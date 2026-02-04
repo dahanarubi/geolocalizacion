@@ -1,0 +1,431 @@
+* {
+    box-sizing: border-box;
+}
+/* ===== HEADER LAYOUT NASA ===== */
+.hud-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 26px;
+    flex-wrap: wrap;
+}
+
+.hud-img {
+    width: 260px;
+    border-radius: 12px;
+    opacity: 0.85;
+    box-shadow:
+        0 0 25px rgba(56,189,248,0.45),
+        inset 0 0 25px rgba(56,189,248,0.15);
+    filter: saturate(1.1) contrast(1.1);
+}
+
+
+.hud-text h1 {
+    font-size: 3.2rem;
+    letter-spacing: 6px;
+    margin-bottom: 14px;
+}
+
+.hud-text span {
+    display: block;
+    margin-top: 6px;
+    opacity: 0.65;
+}
+
+
+/* Responsive: en celular se apila bonito */
+@media (max-width: 600px) {
+    .hud-text {
+        text-align: center;
+    }
+}
+
+
+/* ================= BASE ================= */
+body {
+    margin: 0;
+    font-family: 'Orbitron', 'Segoe UI', sans-serif;
+    color: #e5e7eb;
+    overflow-x: hidden;
+    background: #020617;
+}
+
+/* Profundidad tipo espacio */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 45%, rgba(0,0,0,0.75));
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* ================= FONDO ESPACIAL ================= */
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    background:
+        radial-gradient(circle at top, #020617, #000);
+    overflow: hidden;
+}
+
+/* Grid orbital */
+.background::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(135deg, rgba(56,189,248,0.05) 1px, transparent 1px),
+        linear-gradient(45deg, rgba(56,189,248,0.03) 1px, transparent 1px);
+    background-size: 80px 80px;
+    animation: gridMove 50s linear infinite;
+    opacity: 0.6;
+}
+
+/* Scanlines ultra suaves */
+.background::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            rgba(255,255,255,0.02),
+            rgba(255,255,255,0.02) 1px,
+            transparent 1px,
+            transparent 5px
+        );
+    animation: scanlines 10s linear infinite;
+}
+
+/* ================= GLOW AMBIENTAL ================= */
+.ambient-glow {
+    position: fixed;
+    inset: -20%;
+    background:
+        radial-gradient(circle at 25% 30%, rgba(56,189,248,0.10), transparent 40%),
+        radial-gradient(circle at 75% 70%, rgba(99,102,241,0.08), transparent 45%);
+    animation: ambientMove 30s ease-in-out infinite alternate;
+    z-index: -2;
+}
+
+/* ================= HEADER HUD ================= */
+.hud {
+    padding: 32px 20px 26px;
+    text-align: center;
+    background: rgba(2,6,23,0.55);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(56,189,248,0.25);
+    animation: fadeUp 1s ease forwards;
+}
+
+.hud-icon {
+    width: 90px;
+    margin-bottom: 12px;
+    filter:
+        drop-shadow(0 0 18px rgba(56,189,248,0.8))
+        drop-shadow(0 0 45px rgba(56,189,248,0.5));
+    animation: floatIcon 8s ease-in-out infinite;
+}
+
+.hud h1 {
+    margin: 0;
+    font-size: 2.6rem;
+    letter-spacing: 4px;
+    color: #38bdf8;
+    text-shadow:
+        0 0 12px rgba(56,189,248,0.7),
+        0 0 30px rgba(56,189,248,0.4);
+}
+
+.hud span {
+    display: block;
+    font-size: 0.8rem;
+    opacity: 0.75;
+    margin-top: 6px;
+    letter-spacing: 2px;
+}
+
+/* {
+    box-sizing: border-box;
+}
+
+/* ================= INFO PANEL GRID NASA ================= */
+.info-panel {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 26px;
+    padding: 40px 24px;
+    max-width: 1300px;
+    margin: auto;
+}
+
+/* ================= INFO BOX ================= */
+.info-box {
+    height: 100%;
+    padding: 22px 20px 24px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(14px);
+    position: relative;
+    box-shadow: 0 0 30px rgba(56,189,248,0.15);
+    transition: all 0.4s ease;
+    animation: fadeUp 1.2s ease forwards;
+
+    /* layout interno limpio */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    overflow: hidden;
+}
+
+/* Marco técnico */
+.info-box::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    border: 1px solid rgba(56,189,248,0.25);
+    pointer-events: none;
+}
+
+/* Textura HUD */
+.info-box::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    background:
+        repeating-linear-gradient(
+            135deg,
+            rgba(56,189,248,0.03),
+            rgba(56,189,248,0.03) 1px,
+            transparent 1px,
+            transparent 8px
+        );
+    pointer-events: none;
+}
+
+/* ================= IMAGEN ================= */
+.info-img {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 14px;
+    object-fit: contain;
+    border-radius: 14px;
+
+    filter:
+        drop-shadow(0 0 10px rgba(56,189,248,0.7))
+        drop-shadow(0 0 25px rgba(56,189,248,0.4));
+
+    animation: floatIcon 6s ease-in-out infinite;
+}
+
+/* ================= TEXTO ================= */
+.info-box h3 {
+    margin: 0 0 8px;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    color: #38bdf8;
+}
+
+.info-box p,
+.info-box li {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    opacity: 0.8;
+}
+
+/* ================= HOVER ================= */
+.info-box:hover {
+    transform: translateY(-12px) scale(1.04);
+    box-shadow: 0 0 45px rgba(56,189,248,0.45);
+}
+
+.info-box:hover .info-img {
+    transform: scale(1.12);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 600px) {
+    .info-panel {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+/* Imagen NASA */
+.info-img {
+    width: 64px;
+    margin-bottom: 14px;
+    filter:
+        drop-shadow(0 0 10px rgba(56,189,248,0.7))
+        drop-shadow(0 0 25px rgba(56,189,248,0.4));
+    animation: floatIcon 6s ease-in-out infinite;
+}
+
+.info-box:hover {
+    transform: translateY(-14px) scale(1.04);
+    box-shadow: 0 0 45px rgba(56,189,248,0.45);
+}
+
+.info-box:hover .info-img {
+    transform: scale(1.15);
+}
+
+/* ================= CONTROLES ================= */
+.controls {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    margin-bottom: 18px;
+}
+
+input {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(56,189,248,0.3);
+    color: #e5e7eb;
+    padding: 12px 14px;
+    border-radius: 10px;
+    outline: none;
+}
+
+button {
+    background: transparent;
+    color: #38bdf8;
+    border: 1px solid #38bdf8;
+    padding: 12px 18px;
+    border-radius: 12px;
+    cursor: pointer;
+    letter-spacing: 2px;
+    transition: all 0.25s ease;
+    box-shadow: 0 0 18px rgba(56,189,248,0.3);
+}
+
+button:hover {
+    background: #38bdf8;
+    color: #020617;
+    box-shadow:
+        0 0 25px rgba(56,189,248,0.9),
+        0 0 50px rgba(56,189,248,0.6);
+    transform: translateY(-2px);
+}
+
+/* ================= MAPA ================= */
+.map-container {
+    padding: 30px;
+}
+
+#map {
+    height: 480px;
+    border-radius: 20px;
+    box-shadow: 0 0 45px rgba(56,189,248,0.35);
+    animation: neonPulse 5s infinite;
+    position: relative;
+}
+
+/* ================= FOOTER ================= */
+.footer {
+    margin-top: 80px;
+    padding: 42px 20px 34px;
+    background: rgba(2,6,23,0.65);
+    backdrop-filter: blur(14px);
+    border-top: 1px solid rgba(56,189,248,0.25);
+    text-align: center;
+}
+
+.footer-title {
+    letter-spacing: 4px;
+    color: #38bdf8;
+    text-shadow: 0 0 15px rgba(56,189,248,0.6);
+}
+
+.footer-meta {
+    margin-top: 14px;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    opacity: 0.6;
+}
+
+/* ================= ANIMACIONES ================= */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatIcon {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes gridMove {
+    from { background-position: 0 0; }
+    to { background-position: 160px 160px; }
+}
+
+@keyframes scanlines {
+    from { background-position: 0 0; }
+    to { background-position: 0 220px; }
+}
+
+@keyframes ambientMove {
+    from { transform: translate(0,0); }
+    to { transform: translate(-5%, 4%); }
+}
+
+@keyframes neonPulse {
+    0%,100% { box-shadow: 0 0 30px rgba(56,189,248,0.35); }
+    50% { box-shadow: 0 0 55px rgba(56,189,248,0.7); }
+}
+
+/* ================= INFO BOX LAYOUT LATERAL (NASA PRO) ================= */
+.info-box {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+/* Imagen lateral holográfica */
+.info-img {
+    width: 120px;
+    height: 120px;
+    flex-shrink: 0;
+    object-fit: cover;
+    border-radius: 14px;
+
+    border: 1px solid rgba(56,189,248,0.35);
+
+    box-shadow:
+        0 0 20px rgba(56,189,248,0.6),
+        inset 0 0 20px rgba(56,189,248,0.25);
+
+    animation: floatIcon 7s ease-in-out infinite;
+}
+
+/* Texto a la derecha */
+.info-box h3 {
+    margin: 0 0 6px;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    color: #38bdf8;
+}
+
+.info-box p {
+    margin: 0;
+    font-size: 0.85rem;
+    opacity: 0.75;
+    line-height: 1.4;
+}
+
+/* Responsive: en móvil se apila */
+@media (max-width: 600px) {
+    .info-box {
+        flex-direction: column;
+        text-align: center;
+    }
+}

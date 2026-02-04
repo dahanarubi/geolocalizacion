@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Localizacion</title>
+
+    <!-- Fuente futurista -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+
+    <!-- CAPAS DE FONDO -->
+    <div class="background"></div>
+    <div class="ambient-glow"></div>
+
+    <header class="hud">
+    <div class="hud-content">
+        <img src="image/geo1.png" alt="Mapa holográfico" class="hud-img">
+
+        <div class="hud-text">
+            <h1>GEOLOCALIZACIÓN     ᯓ➤ </h1>
+            <span>Sistema de Geolocalización</span>
+            <span>Realizado por Dahana Rubi & Airis Victoria</span>
+        </div>
+    </div>
+</header>
+
+
+    <!-- PANEL DE INFORMACIÓN -->
+    <section class="info-panel">
+
+        <div class="info-box">
+            <img src="image/geo2.png" class="info-img">
+            <h3> ¿Qué es la geolocalización?</h3>
+            <p>
+                La geolocalización permite identificar la ubicación geográfica
+                de un dispositivo u objeto mediante GPS, Wi-Fi, redes móviles
+                o direcciones IP.
+            </p>
+        </div>
+
+        <div class="info-box">
+            <img src="image/geo3.png" class="info-img">
+            <h3>📍 Tipos de geolocalización</h3>
+            <ul>
+                <li>GPS (ubicación exacta)</li>
+                <li>Dirección IP</li>
+                <li>Redes Wi-Fi</li>
+                <li>Redes móviles</li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <img src="image/geo4.png" class="info-img">
+            <h3> Apps con geolocalización</h3>
+            <ol>
+                <li>Google Maps</li>
+                <li>Uber</li>
+                <li>Waze</li>
+                <li>Instagram</li>
+                <li>Pokémon GO</li>
+            </ol>
+        </div>
+
+        <div class="info-box">
+            <img src="image/geo5.png" class="info-img">
+            <h3> ¿Qué es una API?</h3>
+            <p>
+                Una API es un conjunto de reglas que permite que una aplicación
+                se comunique con otra y acceda a servicios externos como mapas
+                y geolocalización.
+            </p>
+        </div>
+
+        <div class="info-box">
+            <img src="image/geo6.png" class="info-img">
+            <h3> ¿Cómo se genera una clave API?</h3>
+            <p>
+                Se crea una cuenta en el proveedor, se registra un proyecto,
+                se habilita el servicio y se genera una clave de acceso.
+            </p>
+        </div>
+
+        <div class="info-box">
+            <img src="image/geo7.png" class="info-img">
+            <h3> Tipos de ubicación</h3>
+            <ul>
+                <li>Ubicación fija(casa dahana rubi)</li>
+                <li>Ubicación en tiempo real (GPS)</li>
+                <li>Ubicación aproximada</li>
+                <li>Coordenadas exactas</li>
+            </ul>
+        </div>
+
+    </section>
+
+    <!-- BUSCADOR -->
+    <div class="controls">
+        <input type="text" id="search" placeholder="Buscar ubicación...">
+        <button onclick="buscarLugar()">🔍 Buscar</button>
+    </div>
+
+    <!-- MAPA -->
+    <section class="map-container">
+        <div class="map-frame">
+            <div class="map-title">🌍 LIVE MAP MODULE</div>
+
+            <div class="controls">
+                <button onclick="mostrarMiUbicacion()">LOCALIZAR USUARIO</button>
+                <button onclick="irReferencia()">IR A UBICACIÓN FIJA</button>
+            </div>
+
+            <div id="map"></div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-line"></div>
+
+            <p class="footer-title">GEOLOCATION SYSTEM</p>
+            <p class="footer-sub">
+                Universidad Tecnológica de Coahuila · API & Geolocalización
+            </p>
+
+            <div class="footer-meta">
+                <span>© 2026</span>
+                <span>ONLINE</span>
+                <span>v1.0</span>
+                <span>Dahana Rubi · Airis Victoria</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/script.js"></script>
+
+</body>
+</html>
